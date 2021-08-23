@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+	<style type="text/css">
+		body{
+			background: skyblue;
+		 }
+		 #people{
+			 width: 500px;
+			 margin: auto;
+			 margin-top:50px;
+		 }
+		 img{
+			 border-radius: 50px;
+		 }
+		 .card-body{
+            background-color: darkslategray;    
+		 }
+		
+	</style>
+</head>
+<body class="bg-info">
+     <div class="container pt-3">
+	  <div id="people">
+		 <div class="card">
+			 <div class="card-header text-center bg-dark">
+				  
+				  <img id="imgs"src="img/customer-4.jpg" alt="customer-0"width="200px"height="200">
+			 </div>
+			 <div class="card-body text-white">
+				<h1 class="text-center text-info"id="name">Kaung</h1>
+                <p class="p-3"id="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat incidunt, dolor voluptate blanditiis minima voluptates hic, accusamus mollitia autem totam, facilis quia neque ipsam. Odit inventore in soluta ab tempora!</p>
+			 </div>
+			 
+		 </div>
+		 <button class="btn">Prev</button>
+		 <button class="btn">Next</button>
+	  </div>
+	  
+	 </div>
+      <script>
+		  "use strict";
+		  var img=document.querySelector("#imgs") 
+		  var names=document.querySelector("#name");
+		  var text =document.querySelector("#text");
+		  var buttons =document.querySelectorAll(".btn")
+		  var num=0;
+		  var people=[];
+		  function People(img,name,text){
+			  this.image=img;
+			  this.name=name;
+			  this.text=text;
+		  };
+		 function createPeople(img,name,text){
+			 var fullimg=`img/customer-${img}.jpg`;
+			 var person= new People(fullimg,name,text);
+			 people.push(person);
+		 }
+		 console.log(people)
+		 createPeople(0,"kaung htet aung","1.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat incidunt, dolor voluptate blanditiis minima voluptates hic, accusamus mollitia autem totam, facilis quia neque ipsam. Odit inventore in soluta ab tempora!");
+		 createPeople(1,"kaung htet kyaw","2.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat incidunt, dolor voluptate blanditiis minima voluptates hic, accusamus mollitia autem totam, facilis quia neque ipsam. Odit inventore in soluta ab tempora!")
+		 createPeople(2,"kaung htet zaw", "3.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat incidunt, dolor voluptate blanditiis minima voluptates hic, accusamus mollitia autem totam, facilis quia neque ipsam. Odit inventore in soluta ab tempora!");
+		 createPeople(3,"kaung htet soe", "4.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat incidunt, dolor voluptate blanditiis minima voluptates hic, accusamus mollitia autem totam, facilis quia neque ipsam. Odit inventore in soluta ab tempora!")
+		 
+		 buttons.forEach(function(button){
+			 button.addEventListener('click',function(event){
+				 event.preventDefault();
+				 if(event.target.textContent=="Prev"){
+					if(num===0){
+						num=people.length;
+					}
+					num--
+					img.src=people[num].image;
+					names.textContent=people[num].name;
+					text.textContent=people[num].text;
+					
+				 }
+				 if(event.target.textContent=="Next"){
+					
+					 if(num===people.length){
+						 num=0;
+					 }					
+					img.src=people[num].image;
+					names.textContent=people[num].name;
+					text.textContent=people[num].text;
+					num++
+				 }
+			 })
+		 })
+	 </script>
+</body>
+</html>
